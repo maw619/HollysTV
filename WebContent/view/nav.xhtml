@@ -39,7 +39,7 @@ $(document).ready(function(){
 	color: #B22222;
 }
 .fa-lg:nth-child(4) :hover{
-	color: white;
+	color: pink;
 }
 nav{
 	border-bottom: 2px solid deepskyblue;
@@ -62,30 +62,36 @@ nav{
       <span class="text-muted"></span>
     </div>
   </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  	  <div class="center" style="margin:0px auto;">
-      <label for="menu-toggle" class="navbar-toggle collapsed">
-        <span class="fa-lg" style="padding:50px;"><a href="${request.contextPath}/index.xhtml">
-        <i class="fas fa-home fa-2x"></i></a></span>
-        <span class="fa-lg" style="padding:50px;"><a href="${request.contextPath}/view/netflix.xhtml">
-        <i class="fas fa-play fa-2x"></i></a></span>
-        <span class="fa-lg" style="padding:50px;"><a href="${request.contextPath}/view/youtube.xhtml">
-        <i class="fab fa-youtube fa-2x"></i></a></span>
-      <span class="fa-lg" style="padding:50px;">
-      	<a href="#" type="button" onClick="reload();"><i class="fas fa-redo-alt fa-2x"></i></a>
-      </span>
-   </label>
-      </div>
-       
-  </nav>
+	<nav class="navbar navbar-dark bg-dark">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarToggleExternalContent"
+			aria-controls="navbarToggleExternalContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="center" style="margin: 0px auto;">
+			<label for="menu-toggle" class="navbar-toggle collapsed"> <span
+				class="fa-lg" style="padding: 50px;"><a
+					href="${request.contextPath}/index.xhtml"> <i
+						class="fas fa-home fa-2x"></i></a></span> <span class="fa-lg"
+				style="padding: 50px;"><a
+					href="${request.contextPath}/view/netflix.xhtml"> <i
+						class="fas fa-play fa-2x"></i></a></span> <span class="fa-lg"
+				style="padding: 50px;"><a
+					href="${request.contextPath}/view/youtube.xhtml"> <i
+						class="fab fa-youtube fa-2x"></i></a></span> <span class="fa-lg"
+				style="padding: 50px;"> <a href="#"
+					onClick="reload();"><i class="fas fa-redo-alt fa-2x"></i></a>
+			</span>
+			</label>
+		</div>
 
-  <script>
-  	function reload(){
-  		location.reload();
-  	}
-  </script>
+	</nav>
+
+	<script>
+		function reload() {
+			location.reload();
+		}
+	</script>
 </div>
 </html>
