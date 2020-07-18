@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 public class Conexion {
 
 	public Connection conn;
-	public String err = "message";
+
 	
 	public void getConn() {
 		String url = "jdbc:mysql://127.0.0.1:3306/holly";
@@ -30,18 +30,11 @@ public class Conexion {
 			conn = DriverManager.getConnection(url,user,password);
 			System.out.println("connected");
 		}catch(SQLException | ClassNotFoundException e) {
-			err = e.getMessage()+ "|||||||" +e.getLocalizedMessage();
  			e.printStackTrace();
 		}
 		
 	}
 
-	public String getErr() {
-		return err;
-	}
 
-	public void setErr(String err) {
-		this.err = err;
-	}
 	
 }
