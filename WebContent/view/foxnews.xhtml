@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+<h:outputStylesheet library="../resources/css/style.css" name="../resources/css/style.css"  />
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#j_idt7 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    }); 
+  });
+});
+</script>
+</h:head>
+<style>
+.btn-primary a{
+	color:white;
+}
+svg {
+
+}
+
+.fa-lg:nth-child(1) :hover{
+	color: yellow;
+}
+.fa-lg:nth-child(2) :hover{
+	color: white;
+}
+.fa-lg:nth-child(3) :hover{
+	color: red;
+}
+img:hover{
+	 width:50px; 
+	 background:red;
+}
+img{
+	 width:50px; 
+	 background:#007bff;
+}
+
+nav{
+	border-bottom: 2px solid yellow;
+}
+</style>
+<!-- ////////////////////////////////navbar//////////////////////////// -->
+
+
+<ui:include src="nav.xhtml"/>
+
+<!-- ////////////////////////////////~~~~~~~~~~~~~~~~~~~~~~~~~//////////////////////////// -->
+
+
+
+
+
+
+<body style="background:black;">
+
+<div class="container-fluid">
+<div class="input-group flex-nowrap">
+  <div class="input-group-prepend">
+
+  </div>
+ </div>
+
+<div class="top-spot">
+<iframe width="100%" height="100%;" src="https://ustvgo.tv/fox-news-live-streaming-free/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen" 
+        msallowfullscreen="msallowfullscreen" 
+        oallowfullscreen="oallowfullscreen" 
+        webkitallowfullscreen="webkitallowfullscreen"></iframe>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

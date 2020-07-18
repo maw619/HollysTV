@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+<h:outputStylesheet library="../resources/css/style.css" name="../resources/css/style.css"  />
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#j_idt7 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+</h:head>
+<style>
+.btn-primary a{
+	color:white;
+}
+.fa-lg:nth-child(1) :hover{
+	color: deepskyblue;
+}
+.fa-lg:nth-child(2) :hover{
+	color: MediumSeaGreen;
+}
+.fa-lg:nth-child(3) :hover{
+	color: #B22222;
+}
+.fa-lg:nth-child(4) :hover{
+	color: white;
+}
+nav{
+	border-bottom: 2px solid deepskyblue;
+}
+</style>
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">
+      
+<h:form  style="width:90%; margin:0 auto;">
+<ui:repeat var="x" value="#{tVController.listAll()}">
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:4px;"> <a href="#{x.url}"> <h:outputText value="#{x.channel}" /></a></button>
+</div>
+</ui:repeat>
+</h:form>
+</h5>
+
+      <span class="text-muted"></span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  	  <div class="center" style="margin:0px auto;">
+      <label for="menu-toggle" class="navbar-toggle collapsed">
+        <span class="fa-lg" style="padding:50px;"><a href="${request.contextPath}/index.xhtml">
+        <i class="fas fa-home fa-2x"></i></a></span>
+        <span class="fa-lg" style="padding:50px;"><a href="${request.contextPath}/view/netflix.xhtml">
+        <i class="fas fa-play fa-2x"></i></a></span>
+        <span class="fa-lg" style="padding:50px;"><a href="${request.contextPath}/view/youtube.xhtml">
+        <i class="fab fa-youtube fa-2x"></i></a></span>
+      <span class="fa-lg" style="padding:50px;">
+      	<a href="#" type="button" onClick="reload();"><i class="fas fa-redo-alt fa-2x"></i></a>
+      </span>
+   </label>
+      </div>
+       
+  </nav>
+
+  <script>
+  	function reload(){
+  		location.reload();
+  	}
+  </script>
+</div>
+</html>

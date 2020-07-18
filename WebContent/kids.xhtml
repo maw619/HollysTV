@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#j_idt19 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</h:head>
+
+<style>
+.btn-primary a{
+	color:white;
+}
+.fa-lg:nth-child(1) :hover{
+	color: yellow;
+}
+.fa-lg:nth-child(2) :hover{
+	color: white;
+}
+.fa-lg:nth-child(3) :hover{
+	color: red;
+}
+
+nav{
+	border-bottom: 2px solid yellow;
+}
+
+img :hover{
+	height:60px;
+}
+
+@import url( https://fonts.googleapis.com/css?family=Open+Sans); 
+ 
+ 
+p,h1,h2,h3,h4,h5 { 
+    font-family: 'Open Sans', serif; 
+    color: green; 
+ }
+ #myspan{
+ 	width:100%;
+ }
+</style>
+
+
+<ui:include src="view/nav.xhtml"/>
+
+<h:body>
+<br /><br /><br /><br />
+<div class="container">
+<a role="button" class="btn btn-warning" href="news.xhtml">News</a>
+<a href="kids.xhtml" role="button" class="btn btn-info">Kids</a>
+<a href="sports.xhtml" role="button" class="btn btn-success">Sports</a>
+<a href="movies.xhtml" role="button" class="btn btn-dark">Movies</a>
+<a href="index.xhtml" role="button" class="btn btn-primary">All</a>
+
+<a role="button" href="add.xhtml" style="float:right;" data-toggle="modal" data-target="#addForm" class="btn btn-primary"><i class="fas fa-plus-square"></i> Add</a>
+<br /><br />
+
+
+<div class="input-group flex-nowrap">
+  <div class="input-group-prepend">
+    <span class
+    ="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+  </div>
+  <input type="text" id="myInput" class="form-control" placeholder="Search Channel" aria-label="Username" aria-describedby="addon-wrapping"/>
+</div>
+
+<br />
+
+<h:form>
+<table id="j_idt19" >
+<h:dataTable value="#{tVController.kids()}" var="x" class="table table-striped">
+
+<h:column class="thead-dark">
+	<f:facet name="header">CHANNEL</f:facet>
+	
+	<h:outputText value="#{x.channel}"/>
+</h:column>
+<h:column class="thead-dark">
+	<f:facet name="header">SITE</f:facet>
+	
+	<h:outputText value="#{x.site}"/>
+</h:column>
+<h:column class="thead-dark">
+	<f:facet name="header">GENRE</f:facet>
+	
+	<h:outputText value="#{x.genre}"/>
+</h:column>
+<h:column class="thead-dark">
+	<f:facet name="header">IMAGE</f:facet>
+	<a href="#{x.url}"><img src="#{x.image}" style="width:70px;"/></a>
+</h:column>
+
+<h:column class="thead-dark">
+<f:facet name="header">EDIT</f:facet>
+<h:commandLink  action="#{uploadBean.loadChannel(x.id)}" class="btn btn-success btn active " style="margin-right:5px;"><i class="fas fa-pencil-alt"></i></h:commandLink>
+
+<h:commandLink  action="#{uploadBean.delete(x.id)}" class="btn btn-danger btn active " style="margin-right:5px;"><i class="fas fa-trash-alt"></i></h:commandLink>
+
+<h:commandLink  action="#{uploadBean.loadImage(x.id)}" class="btn btn-primary btn active " style="margin-right:0px;"><i class="fas fa-images "></i></h:commandLink>
+</h:column>
+</h:dataTable>
+</table>
+</h:form>
+
+
+<!-- /////////////////////////////////////////Image Upload//////////////////////////////////////////////  -->
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+			<h:form enctype="multipart/form-data" class="form" method="post">
+			<h:inputFile  value="#{uploadBean.file}" class="form-control-file"/>
+			
+			<h:commandButton value="upload" action="#{uploadBean.updateImage(imageid)}" type="submit" class="btn-primary" style="margin-top:10px;"/>
+			</h:form>	
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+
+
+	<!-- //////////////////////////////////////////////ADD////////////////////////////////////////////  -->
+	
+	
+		<div class="modal fade" id="addForm" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background:#1e90ff;">
+						<h5 class="modal-title" id="exampleModalLabel" style="color:white">Add Channel</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="modal-body">
+
+
+	<h:form enctype="multipart/form-data" autocomplete="off" class="form" method="post" style="margin-bottom:8px;">
+	<h:inputText value="#{tV.channel}" a:placeholder="channel" class="form-control" style="margin-bottom:8px;" />
+		<h:inputText value="#{tV.site}" a:placeholder="site" class="form-control" style="margin-bottom:8px;" />
+		<h:inputText value="#{tV.url}" a:placeholder="url" class="form-control" style="margin-bottom:8px;" />
+		
+		<h:selectOneMenu value = "#{tV.genre}" class="form-control"> 
+		<f:selectItem itemValue = "news" itemLabel = "news" /> 
+		<f:selectItem itemValue = "movie" itemLabel = "movie" /> 
+		<f:selectItem itemValue = "sports" itemLabel = "sports" /> 		
+		<f:selectItem itemValue = "kids" itemLabel = "kids" /> 
+		<f:selectItem itemValue = "other" itemLabel = "other" /> 
+		</h:selectOneMenu> 
+		<div style="padding:4px;"/>
+		<h:inputFile value="#{uploadBean.file}" a:placeholder="upload file" class="form-control-file" style="margin-bottom:5px;" />
+		
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary"
+				data-dismiss="modal">Close</button>
+			<h:commandLink value="Save Changes" action="#{uploadBean.saveChannel(tV)}" type="submit" class="btn btn-success" style="margin-bottom:5px;" />
+		</div>
+	</h:form>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+
+<!-- Small modal -->
+
+<!-- ///////////////////////////////////
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
+
+//////////////////////////////////////////////////////////////////  -->
+
+
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <h:commandLink  action="#{uploadBean.delete(x.id)}" class="btn btn-danger btn active " style="margin-right:5px;"><i class="fas fa-trash-alt"></i></h:commandLink>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</h:body>
+</html>
